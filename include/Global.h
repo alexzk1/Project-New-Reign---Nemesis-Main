@@ -11,7 +11,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-
+#include <QString>
 #include <chrono>
 
 #include "debugmsg.h"
@@ -21,7 +21,32 @@ using VecStr  = std::vector<std::string>;
 using ID      = std::unordered_map<std::string, int>;
 using uint    = unsigned int;
 
+#ifdef WIN32
 #pragma warning(disable : 4503)
+using FileNameString = std::wstring;
+inline QString fns2qs(const FileNameString& s)
+{
+    return QString::fromStdWString(s);
+}
+inline FileNameString dir2str(const std::filesystem::path& directory)
+{
+    return directory.wstring();
+}
+#define STR(S) L##S
+#else
+using FileNameString = std::string;
+inline QString fns2qs(const FileNameString& s)
+{
+    return QString::fromStdString(s);
+}
+
+inline FileNameString dir2str(const std::filesystem::path& directory)
+{
+    return directory.string();
+}
+
+#define STR(S) S
+#endif
 
 #define NOT_FOUND std::string::npos
 
@@ -35,32 +60,32 @@ extern std::unordered_map<std::wstring, std::wstring> behaviorPath; // hkx file 
 
 // behavior generator
 extern std::unordered_map<std::string, bool>
-    activatedBehavior; // behavior file, true/fast; check if the behavior is needed to be edited to character for animationdatasinglefile
+activatedBehavior; // behavior file, true/fast; check if the behavior is needed to be edited to character for animationdatasinglefile
 extern std::unordered_map<std::wstring, std::wstring>
-    behaviorProjectPath; // project, project's path; project that has been installed
+behaviorProjectPath; // project, project's path; project that has been installed
 extern std::unordered_map<std::string, VecStr>
-    behaviorJoints; // lower lvl behavior file, higher lvl behavior file
+behaviorJoints; // lower lvl behavior file, higher lvl behavior file
 extern std::unordered_map<std::string, VecStr>
-    behaviorProject; // character hkx file name, list of project hkx file name; link the project
+behaviorProject; // character hkx file name, list of project hkx file name; link the project
 extern std::unordered_map<std::string, std::set<std::string>>
-    usedAnim; // behavior name, animation path; animation used in behavior file
+        usedAnim; // behavior name, animation path; animation used in behavior file
 extern std::unordered_map<std::string, std::set<std::string>>
-    registeredAnim; // characters hkx file name, animation name, bool; is registered in that behavior file?
+        registeredAnim; // characters hkx file name, animation name, bool; is registered in that behavior file?
 extern std::unordered_map<std::string, std::unordered_map<std::string, std::vector<std::set<std::string>>>>
-    animModMatch; // characters hkx file name, animation file, animation paths & mod name; match conflicting mod (duplicated anim file)
+animModMatch; // characters hkx file name, animation file, animation paths & mod name; match conflicting mod (duplicated anim file)
 
 // Alternate Animation data
 extern std::unordered_map<std::string, VecStr>
-    alternateAnim;                                      // original animation name, list of AA animations
+alternateAnim;                                      // original animation name, list of AA animations
 extern std::unordered_map<std::string, VecStr> groupAA; // animation group name, list of animations
 extern std::unordered_map<std::string, VecStr>
-    groupAAPrefix; // animation group name, list of AA prefix's group; for scripting
+groupAAPrefix; // animation group name, list of AA prefix's group; for scripting
 extern std::unordered_map<std::string, VecStr> AAEvent; // AA animation, list of animEvent
 extern std::unordered_map<std::string, VecStr>
-    AAHasEvent; // original animation name, AA with event; which original animation associated with AA has new event name?
+AAHasEvent; // original animation name, AA with event; which original animation associated with AA has new event name?
 extern std::unordered_map<std::string, std::string> AAGroup; // AA file name, animation group name
 extern std::unordered_map<std::string, std::unordered_map<std::string, int>>
-    AAGroupCount; // AA prefix, animation group name, count; animation group picked count
+        AAGroupCount; // AA prefix, animation group name, count; animation group picked count
 extern std::set<std::string> groupNameList; // list of animation group name; for scripting
 
 // string utilities

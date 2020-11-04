@@ -1,6 +1,6 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "BSComputeAddBoneAnimModifier_1.h"
 
 #include <Common/Serialize/hkSerialize.h>
@@ -19,11 +19,11 @@
 
 static const hkInternalClassMember BSComputeAddBoneAnimModifierClass_Members[] =
 {
-   { "boneIndex",HK_NULL,HK_NULL,hkClassMember::TYPE_INT16,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSComputeAddBoneAnimModifier,m_boneIndex) /*44*/,HK_NULL},
-   { "translationLSOut",HK_NULL,HK_NULL,hkClassMember::TYPE_VECTOR4,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSComputeAddBoneAnimModifier,m_translationLSOut) /*48*/,HK_NULL},
-   { "rotationLSOut",HK_NULL,HK_NULL,hkClassMember::TYPE_QUATERNION,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSComputeAddBoneAnimModifier,m_rotationLSOut) /*64*/,HK_NULL},
-   { "scaleLSOut",HK_NULL,HK_NULL,hkClassMember::TYPE_VECTOR4,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSComputeAddBoneAnimModifier,m_scaleLSOut) /*80*/,HK_NULL},
-   { "pSkeletonMemory",HK_NULL,HK_NULL,hkClassMember::TYPE_POINTER,hkClassMember::TYPE_VOID,0,hkClassMember::SERIALIZE_IGNORED,HK_OFFSET_OF(BSComputeAddBoneAnimModifier,m_pSkeletonMemory) /*96*/,HK_NULL},
+    { "boneIndex", HK_NULL, HK_NULL, hkClassMember::TYPE_INT16, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSComputeAddBoneAnimModifier, m_boneIndex) /*44*/, HK_NULL},
+    { "translationLSOut", HK_NULL, HK_NULL, hkClassMember::TYPE_VECTOR4, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSComputeAddBoneAnimModifier, m_translationLSOut) /*48*/, HK_NULL},
+    { "rotationLSOut", HK_NULL, HK_NULL, hkClassMember::TYPE_QUATERNION, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSComputeAddBoneAnimModifier, m_rotationLSOut) /*64*/, HK_NULL},
+    { "scaleLSOut", HK_NULL, HK_NULL, hkClassMember::TYPE_VECTOR4, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSComputeAddBoneAnimModifier, m_scaleLSOut) /*80*/, HK_NULL},
+    { "pSkeletonMemory", HK_NULL, HK_NULL, hkClassMember::TYPE_POINTER, hkClassMember::TYPE_VOID, 0, hkClassMember::SERIALIZE_IGNORED, HK_OFFSET_OF(BSComputeAddBoneAnimModifier, m_pSkeletonMemory) /*96*/, HK_NULL},
 };
 
 // Signature:  a67f8c46
@@ -40,6 +40,6 @@ const hkClass BSComputeAddBoneAnimModifierClass(
     HK_NULL, // attributes
     0, // flags
     1 // version
- );
+);
 HK_REFLECTION_DEFINE_VIRTUAL(BSComputeAddBoneAnimModifier, BSComputeAddBoneAnimModifier);
 

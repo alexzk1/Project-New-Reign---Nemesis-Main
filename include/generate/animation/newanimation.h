@@ -8,17 +8,13 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-
-#include "generate/AnimationUtility.h"
-
 #include "utilities/alphanum.hpp"
 #include "utilities/regex.h"
-
-#include "generate/AnimationUtility.h"
-
+#include "generate/animationutility.h"
 #include "generate/animation/animthreadinfo.h"
 #include "generate/animation/animationthread.h"
 #include "generate/animation/registeranimation.h"
+#include "generate/animation/singletemplate.h"
 
 typedef std::vector<std::string> VecStr;
 typedef std::unordered_map<std::string, std::string> SSMap;
@@ -27,12 +23,10 @@ typedef std::unordered_map<std::string, int> ID;
 
 struct proc;
 
-class AnimTemplate;
-
 namespace nemesis
 {
-	template<typename T>
-	struct CondVar;
+    template<typename T>
+    struct CondVar;
 }
 
 struct MDException
@@ -50,7 +44,7 @@ private:
     std::string strID;
     std::string filepath;
 
-    // VecStr clipname;		obsolete
+    // VecStr clipname;     obsolete
     VecStr eventID;
     VecStr variableID;
     SSMap IDExist;

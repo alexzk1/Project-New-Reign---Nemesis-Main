@@ -16,6 +16,7 @@
 
 #endif
 
+#ifdef _WIN32
 extern "C" FILE * __cdecl __iob_func(void)
 {
     CONTEXT c = { 0 };
@@ -38,7 +39,7 @@ extern "C" FILE * __cdecl __iob_func(void)
     /*
     if (!StackWalk64(imageType, hProcess, hThread, &s, &c, nullptr, SymFunctionTableAccess64, SymGetModuleBase64, nullptr))
         return nullptr;
-*/
+    */
     if (s.AddrReturn.Offset == 0)
         return nullptr;
 
@@ -48,21 +49,15 @@ extern "C" FILE * __cdecl __iob_func(void)
         if (*assembly == 0x83 && *(assembly + 1) == 0xC0 && (*(assembly + 2) == 0x20 || *(assembly + 2) == 0x40))
         {
             if (*(assembly + 2) == 32)
-            {
                 return (FILE*)((unsigned char *)stdout - 32);
-            }
             if (*(assembly + 2) == 64)
-            {
                 return (FILE*)((unsigned char *)stderr - 64);
-            }
 
         }
         else
-        {
             return stdin;
-        }
     }
     return nullptr;
 }
-
+#endif
 /* -----END FILE COMPATIBLITY VS2008---------------*/

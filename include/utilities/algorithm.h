@@ -37,6 +37,6 @@ namespace nemesis
         if (str.empty()) return {};
 
         return {std::begin(str), std::end(str)};
-    };
+    }
 
 } // namespace nemesis

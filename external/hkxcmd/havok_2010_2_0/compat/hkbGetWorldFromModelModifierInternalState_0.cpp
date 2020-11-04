@@ -1,6 +1,6 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "hkbGetWorldFromModelModifierInternalState_0.h"
 
 #include <Common/Serialize/hkSerialize.h>

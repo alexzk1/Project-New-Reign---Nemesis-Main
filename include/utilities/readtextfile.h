@@ -1,7 +1,7 @@
 #ifndef READTEXTFILE_H_
 #define READTEXTFILE_H_
 
-#include <QtCore\QFile.h>
+#include <QFile>
 #include <filesystem>
 
 struct FileReader
@@ -36,9 +36,7 @@ struct FileReader
             line          = qline.toStdString();
 
             while (line.length() > 0 && (line.back() == '\n' || line.back() == '\r'))
-            {
                 line.pop_back();
-            }
 
             return true;
         }
@@ -55,9 +53,7 @@ struct FileReader
             line                 = std::string_view(templine);
 
             while (line.length() > 0 && (line.back() == '\n' || line.back() == '\r'))
-            {
                 line = std::string_view(templine, line.length() - 1);
-            }
 
             return true;
         }
@@ -73,9 +69,7 @@ struct FileReader
             line          = qline.toStdWString();
 
             while (line.length() > 0 && (line.back() == '\n' || line.back() == '\r'))
-            {
                 line.pop_back();
-            }
 
             return true;
         }
@@ -92,9 +86,7 @@ struct FileReader
             line                    = std::wstring_view(templine);
 
             while (line.length() > 0 && (line.back() == '\n' || line.back() == '\r'))
-            {
                 line = std::wstring_view(templine, line.length() - 1);
-            }
 
             return true;
         }

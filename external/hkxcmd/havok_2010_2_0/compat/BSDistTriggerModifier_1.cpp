@@ -1,6 +1,6 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "BSDistTriggerModifier_1.h"
 
 #include <Common/Serialize/hkSerialize.h>
@@ -19,10 +19,10 @@
 
 static const hkInternalClassMember BSDistTriggerModifierClass_Members[] =
 {
-   { "targetPosition",HK_NULL,HK_NULL,hkClassMember::TYPE_VECTOR4,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSDistTriggerModifier,m_targetPosition) /*48*/,HK_NULL},
-   { "distance",HK_NULL,HK_NULL,hkClassMember::TYPE_REAL,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSDistTriggerModifier,m_distance) /*64*/,HK_NULL},
-   { "distanceTrigger",HK_NULL,HK_NULL,hkClassMember::TYPE_REAL,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSDistTriggerModifier,m_distanceTrigger) /*68*/,HK_NULL},
-   { "triggerEvent",&hkbEventPropertyClass,HK_NULL,hkClassMember::TYPE_STRUCT,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSDistTriggerModifier,m_triggerEvent) /*72*/,HK_NULL},
+    { "targetPosition", HK_NULL, HK_NULL, hkClassMember::TYPE_VECTOR4, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSDistTriggerModifier, m_targetPosition) /*48*/, HK_NULL},
+    { "distance", HK_NULL, HK_NULL, hkClassMember::TYPE_REAL, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSDistTriggerModifier, m_distance) /*64*/, HK_NULL},
+    { "distanceTrigger", HK_NULL, HK_NULL, hkClassMember::TYPE_REAL, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSDistTriggerModifier, m_distanceTrigger) /*68*/, HK_NULL},
+    { "triggerEvent", &hkbEventPropertyClass, HK_NULL, hkClassMember::TYPE_STRUCT, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSDistTriggerModifier, m_triggerEvent) /*72*/, HK_NULL},
 };
 
 // Signature:  b34d2bbd
@@ -39,6 +39,6 @@ const hkClass BSDistTriggerModifierClass(
     HK_NULL, // attributes
     0, // flags
     1 // version
- );
+);
 HK_REFLECTION_DEFINE_VIRTUAL(BSDistTriggerModifier, BSDistTriggerModifier);
 

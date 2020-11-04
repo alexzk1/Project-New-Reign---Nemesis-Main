@@ -1,6 +1,6 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "BSBoneSwitchGeneratorBoneData_1.h"
 
 #include <Common/Serialize/hkSerialize.h>
@@ -19,8 +19,8 @@
 
 static const hkInternalClassMember BSBoneSwitchGeneratorBoneDataClass_Members[] =
 {
-   { "pGenerator",&hkbGeneratorClass,HK_NULL,hkClassMember::TYPE_POINTER,hkClassMember::TYPE_STRUCT,0,hkClassMember::ALIGN_16,HK_OFFSET_OF(BSBoneSwitchGeneratorBoneData,m_pGenerator) /*32*/,HK_NULL},
-   { "spBoneWeight",&hkbBoneWeightArrayClass,HK_NULL,hkClassMember::TYPE_POINTER,hkClassMember::TYPE_STRUCT,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSBoneSwitchGeneratorBoneData,m_spBoneWeight) /*36*/,HK_NULL},
+    { "pGenerator", &hkbGeneratorClass, HK_NULL, hkClassMember::TYPE_POINTER, hkClassMember::TYPE_STRUCT, 0, hkClassMember::ALIGN_16, HK_OFFSET_OF(BSBoneSwitchGeneratorBoneData, m_pGenerator) /*32*/, HK_NULL},
+    { "spBoneWeight", &hkbBoneWeightArrayClass, HK_NULL, hkClassMember::TYPE_POINTER, hkClassMember::TYPE_STRUCT, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSBoneSwitchGeneratorBoneData, m_spBoneWeight) /*36*/, HK_NULL},
 };
 
 // Signature:  c1215be6
@@ -37,6 +37,6 @@ const hkClass BSBoneSwitchGeneratorBoneDataClass(
     HK_NULL, // attributes
     0, // flags
     1 // version
- );
+);
 HK_REFLECTION_DEFINE_VIRTUAL(BSBoneSwitchGeneratorBoneData, BSBoneSwitchGeneratorBoneData);
 

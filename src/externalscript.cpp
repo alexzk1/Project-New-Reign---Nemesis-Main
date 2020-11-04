@@ -5,7 +5,8 @@
 #include <Python.h>
 //#define pyslots
 
-#include <QtCore/QProcess>
+#include <QProcess>
+#include <QDir>
 
 #include "externalscript.h"
 
@@ -13,13 +14,23 @@
 #include "generate/alternateanimation.h"
 
 #include "utilities/algorithm.h"
+#include "auto_close_fp.h"
 
 using namespace std;
 
 bool dummyScript = false;
 
-void BatchScriptThread(const wstring& filename, const filesystem::path& filepath, bool hidden);
-void PythonScriptThread(const wstring& filename, const wchar_t* filepath);
+
+void BatchScriptThread(const FileNameString& filename, const filesystem::path& filepath, bool hidden);
+void PythonScriptThread(const FileNameString& filename, const FileNameString::value_type* filepath);
+
+#ifdef WIN32
+    using Vecs = VecWStr;
+    const static FileNameString separator = "\\";
+#else
+    using Vecs = VecStr;
+    const static FileNameString separator = "/";
+#endif
 
 void RunScript(const filesystem::path& directory, bool& hasScript)
 {
@@ -30,81 +41,91 @@ void RunScript(const filesystem::path& directory, bool& hasScript)
     }
 
     bool warning = false;
-    VecWstr scriptlist;
+    Vecs scriptlist;
     read_directory(directory, scriptlist);
 
     for (auto& file : scriptlist)
     {
-        wstring scriptpath = directory.wstring() + file;
+        auto scriptpath = dir2str(directory) + file;
         std::filesystem::path scriptfile(scriptpath);
 
         // hidden scripts
         if (!std::filesystem::is_directory(scriptfile))
         {
+            const auto ext = dir2str(scriptfile.extension());
+#ifdef WIN32
             // bat script
-            if (nemesis::iequals(scriptfile.extension().wstring(), L".bat"))
+            if (nemesis::iequals(ext, STR(".bat")))
             {
                 hasScript = true;
-                BatchScriptThread(scriptfile.filename().wstring(), scriptpath, false);
+                BatchScriptThread(dir2str(scriptfile.filename()), scriptpath, false);
             }
             // python script
-            else if (nemesis::iequals(scriptfile.extension().wstring(), L".py"))
-            {
-                hasScript = true;
-                PythonScriptThread(scriptfile.filename().wstring(), scriptpath.c_str());
-            }
+            else
+#endif
+                if (nemesis::iequals(ext, STR(".py")))
+                {
+                    hasScript = true;
+                    PythonScriptThread(dir2str(scriptfile.filename()), scriptpath.c_str());
+                }
         }
         // visible scripts
-        else if (nemesis::iequals(file, L"show") && std::filesystem::is_directory(scriptfile))
-        {
-            VecWstr shownscriptlist;
-            read_directory(scriptpath, shownscriptlist);
-
-            for (auto& shown : shownscriptlist)
+        else
+            if (nemesis::iequals(file, STR("show")) && std::filesystem::is_directory(scriptfile))
             {
-                wstring shownpath = scriptpath + L"\\" + shown;
-                std::filesystem::path shownscript(shownpath);
+                Vecs shownscriptlist;
+                read_directory(scriptpath, shownscriptlist);
 
-                if (!std::filesystem::is_directory(shownscript))
+                for (auto& shown : shownscriptlist)
                 {
-                    // bat script
-                    if (nemesis::iequals(shownscript.extension().wstring(), L".bat"))
+                    auto shownpath = scriptpath + separator + shown;
+                    std::filesystem::path shownscript(shownpath);
+
+                    if (!std::filesystem::is_directory(shownscript))
                     {
-                        hasScript = true;
-                        BatchScriptThread(shownscript.filename().wstring(), shownpath, true);
-                    }
-                    // python script
-                    else if (nemesis::iequals(shownscript.extension().wstring(), L".py"))
-                    {
-                        hasScript = true;
-                        PythonScriptThread(shownscript.filename().wstring(), shownpath.c_str());
+                        const auto ext = dir2str(shownscript.extension());
+#ifdef WIN32
+                        // bat script
+                        if (nemesis::iequals(ext, STR(".bat")))
+                        {
+                            hasScript = true;
+                            BatchScriptThread(dir2str(shownscript.filename()), shownpath, true);
+                        }
+                        // python script
+                        else
+#endif
+                            if (nemesis::iequals(ext, STR(".py")))
+                            {
+                                hasScript = true;
+                                PythonScriptThread(dir2str(shownscript.filename()), shownpath.c_str());
+                            }
                     }
                 }
             }
-        }
     }
 
     if (hasScript) interMsg("");
 }
 
-void BatchScriptThread(const wstring& filename, const filesystem::path& filepath, bool hidden)
+void BatchScriptThread(const FileNameString& filename, const filesystem::path& filepath, bool hidden)
 {
     try
     {
-        wstring msg = TextBoxMessage(1016) + L": " + filename;
+#ifdef WIN32
+        FileNameString msg = TextBoxMessage(1016) + L": " + filename;
         interMsg(msg);
         DebugLogging(msg);
-
+#endif
         if (hidden)
         {
             QProcess* p = new QProcess();
-            p->start(QString::fromStdWString(filepath));
+            p->start(fns2qs(filepath));
             p->waitForFinished();
             delete p;
         }
         else
         {
-            if (QProcess::execute(QString::fromStdWString(filepath)) != 0) WarningMessage(1023, filepath);
+            if (QProcess::execute(fns2qs(filepath)) != 0) WarningMessage(1023, filepath);
         }
     }
     catch (const exception& ex)
@@ -117,22 +138,23 @@ void BatchScriptThread(const wstring& filename, const filesystem::path& filepath
     }
 }
 
-void PythonScriptThread(const wstring& filename, const wchar_t* filepath)
+void PythonScriptThread(const FileNameString& filename, const FileNameString::value_type *filepath)
 {
     try
     {
-        FILE* f;
-        wstring msg = TextBoxMessage(1016) + L": " + filename;
+#ifdef WIN32
+        FileNameString msg = TextBoxMessage(1016) + L": " + filename;
         interMsg(msg);
         DebugLogging(msg);
-        _wfopen_s(&f, filepath, L"r");
+#endif
+        auto_close_fp f(filepath, STR("r"));
 
         if (f)
         {
             try
             {
                 Py_Initialize();
-                PyRun_SimpleFile(f, nemesis::transform_to<string>(wstring(filepath)).c_str());
+                PyRun_SimpleFile(f, nemesis::transform_to<string>(FileNameString(filepath)).c_str());
                 Py_Finalize();
             }
             catch (const exception& ex)

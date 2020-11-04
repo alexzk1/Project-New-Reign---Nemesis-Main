@@ -1,7 +1,7 @@
 #ifndef TERMINATOR_H_
 #define TERMINATOR_H_
 
-#include <QtCore\QObject>
+#include <QObject>
 
 class NemesisEngine;
 

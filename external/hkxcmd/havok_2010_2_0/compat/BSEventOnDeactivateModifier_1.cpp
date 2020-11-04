@@ -1,6 +1,6 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "BSEventOnDeactivateModifier_1.h"
 
 #include <Common/Serialize/hkSerialize.h>
@@ -19,7 +19,7 @@
 
 static const hkInternalClassMember BSEventOnDeactivateModifierClass_Members[] =
 {
-   { "event",&hkbEventPropertyClass,HK_NULL,hkClassMember::TYPE_STRUCT,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSEventOnDeactivateModifier,m_event) /*44*/,HK_NULL},
+    { "event", &hkbEventPropertyClass, HK_NULL, hkClassMember::TYPE_STRUCT, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSEventOnDeactivateModifier, m_event) /*44*/, HK_NULL},
 };
 
 // Signature:  1062d993
@@ -36,6 +36,6 @@ const hkClass BSEventOnDeactivateModifierClass(
     HK_NULL, // attributes
     0, // flags
     1 // version
- );
+);
 HK_REFLECTION_DEFINE_VIRTUAL(BSEventOnDeactivateModifier, BSEventOnDeactivateModifier);
 

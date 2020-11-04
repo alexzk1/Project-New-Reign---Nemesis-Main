@@ -1,6 +1,6 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "BSGetTimeStepModifier_0.h"
 
 #include <Common/Serialize/hkSerialize.h>
@@ -19,7 +19,7 @@
 
 static const hkInternalClassMember BSGetTimeStepModifierClass_Members[] =
 {
-   { "timeStep",HK_NULL,HK_NULL,hkClassMember::TYPE_REAL,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSGetTimeStepModifier,m_timeStep) /*44*/,HK_NULL},
+    { "timeStep", HK_NULL, HK_NULL, hkClassMember::TYPE_REAL, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSGetTimeStepModifier, m_timeStep) /*44*/, HK_NULL},
 };
 
 // Signature:  bda33bfe
@@ -36,6 +36,6 @@ const hkClass BSGetTimeStepModifierClass(
     HK_NULL, // attributes
     0, // flags
     0 // version
- );
+);
 HK_REFLECTION_DEFINE_VIRTUAL(BSGetTimeStepModifier, BSGetTimeStepModifier);
 

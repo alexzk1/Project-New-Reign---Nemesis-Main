@@ -57,15 +57,15 @@ template <typename type>
 inline void AdditionalInput(std::string& message, int counter, type input)
 {
     std::string newInput    = "<" + std::to_string(counter) + ">";
-    std::string replacement = (std::ostringstream() << input).str();
+    std::ostringstream ss;
+    ss << input;
+    std::string replacement = ss.str();
     int ref                 = sameWordCount(message, newInput);
 
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
     }
     else
     {
@@ -86,9 +86,7 @@ inline void AdditionalInput(std::string& message, int counter, const std::wstrin
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
     }
     else
     {
@@ -109,9 +107,7 @@ inline void AdditionalInput(std::string& message, int counter, const std::wstrin
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
     }
     else
     {
@@ -132,9 +128,7 @@ inline void AdditionalInput(std::string& message, int counter, const std::filesy
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
     }
     else
     {
@@ -156,9 +150,7 @@ inline void AdditionalInput(std::string& message, int counter, const std::wstrin
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
 
         AdditionalInput(message, counter + 1, rest...);
     }
@@ -182,9 +174,7 @@ inline void AdditionalInput(std::string& message, int counter, const std::wstrin
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
 
         AdditionalInput(message, counter + 1, rest...);
     }
@@ -208,9 +198,7 @@ inline void AdditionalInput(std::string& message, int counter, const std::filesy
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
 
         AdditionalInput(message, counter + 1, rest...);
     }
@@ -228,15 +216,15 @@ template <typename type, typename... other>
 inline void AdditionalInput(std::string& message, int counter, type input, other... rest)
 {
     std::string newInput    = "<" + std::to_string(counter) + ">";
-    std::string replacement = (std::ostringstream() << input).str();
+    std::ostringstream ss;
+    ss << input;
+    std::string replacement = ss.str();
     int ref                 = sameWordCount(message, newInput);
 
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
 
         AdditionalInput(message, counter + 1, rest...);
     }
@@ -259,9 +247,7 @@ inline void AdditionalInput(std::wstring& message, int counter, const std::strin
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
     }
     else
     {
@@ -282,9 +268,7 @@ inline void AdditionalInput(std::wstring& message, int counter, const std::strin
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
     }
     else
     {
@@ -305,9 +289,7 @@ inline void AdditionalInput(std::wstring& message, int counter, const std::files
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
     }
     else
     {
@@ -323,15 +305,15 @@ template <typename type>
 inline void AdditionalInput(std::wstring& message, int counter, type input)
 {
     std::wstring newInput    = L"<" + std::to_wstring(counter) + L">";
-    std::wstring replacement = (std::wostringstream() << input).str();
+    std::wostringstream ss;
+    ss << input;
+    std::wstring replacement = ss.str();
     int ref                  = sameWordCount(message, newInput);
 
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
     }
     else
     {
@@ -353,9 +335,7 @@ inline void AdditionalInput(std::wstring& message, int counter, const std::strin
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
 
         AdditionalInput(message, counter + 1, rest...);
     }
@@ -379,9 +359,7 @@ inline void AdditionalInput(std::wstring& message, int counter, const std::strin
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
 
         AdditionalInput(message, counter + 1, rest...);
     }
@@ -405,9 +383,7 @@ inline void AdditionalInput(std::wstring& message, int counter, const std::files
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
 
         AdditionalInput(message, counter + 1, rest...);
     }
@@ -431,9 +407,7 @@ inline void AdditionalInput(std::wstring& message, int counter, type input, othe
     if (ref != 0)
     {
         for (int i = 0; i < ref; ++i)
-        {
             message.replace(message.find(newInput), newInput.size(), replacement);
-        }
 
         AdditionalInput(message, counter + 1, rest...);
     }

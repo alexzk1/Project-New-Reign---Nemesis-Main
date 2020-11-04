@@ -52,12 +52,8 @@ void DebugMsg::setup(const wstring& language)
     {
         if (storeline[i][0] != '\'' && storeline[i].length() != 0)
         {
-            __int64 counter = sameWordCount(storeline[i], L"\\n");
-
-            for (int j = 0; j < counter; ++j)
-            {
+            for (int64_t j = 0, counter = sameWordCount(storeline[i], L"\\n"); j < counter; ++j)
                 storeline[i].replace(storeline[i].find(L"\\n"), 2, L"\n");
-            }
 
             if (wordFind(storeline[i], L"UIT ") == 0)
             {
@@ -65,37 +61,40 @@ void DebugMsg::setup(const wstring& language)
                 {
                     wstring code = storeline[i].substr(4, storeline[i].find(L"=") - 4);
 
-                    if (isOnlyNumber(code)) uilist[stoi(code)] = storeline[i].substr(storeline[i].find(L"=") + 1); 
+                    if (isOnlyNumber(code)) uilist[stoi(code)] = storeline[i].substr(storeline[i].find(L"=") + 1);
 
                 }
             }
-            else if (wordFind(storeline[i], L"TBT ") == 0)
-            {
-                if (storeline[i].find(L"=") != NOT_FOUND)
+            else
+                if (wordFind(storeline[i], L"TBT ") == 0)
                 {
-                    wstring code = storeline[i].substr(4, storeline[i].find(L"=") - 4);
+                    if (storeline[i].find(L"=") != NOT_FOUND)
+                    {
+                        wstring code = storeline[i].substr(4, storeline[i].find(L"=") - 4);
 
-                    if (isOnlyNumber(code)) textlist[stoi(code)] = storeline[i].substr(storeline[i].find(L"=") + 1);
+                        if (isOnlyNumber(code)) textlist[stoi(code)] = storeline[i].substr(storeline[i].find(L"=") + 1);
+                    }
                 }
-            }
-            else if (wordFind(storeline[i], L"ERR ") == 0)
-            {
-                if (storeline[i].find(L"=") != NOT_FOUND)
-                {
-                    wstring code = storeline[i].substr(4, storeline[i].find(L"=") - 4);
+                else
+                    if (wordFind(storeline[i], L"ERR ") == 0)
+                    {
+                        if (storeline[i].find(L"=") != NOT_FOUND)
+                        {
+                            wstring code = storeline[i].substr(4, storeline[i].find(L"=") - 4);
 
-                    if (isOnlyNumber(code)) errorlist[stoi(code)] = storeline[i].substr(storeline[i].find(L"=") + 1);
-                }
-            }
-            else if (wordFind(storeline[i], L"WAR ") == 0)
-            {
-                if (storeline[i].find(L"=") != NOT_FOUND)
-                {
-                    wstring code = storeline[i].substr(4, storeline[i].find(L"=") - 4);
+                            if (isOnlyNumber(code)) errorlist[stoi(code)] = storeline[i].substr(storeline[i].find(L"=") + 1);
+                        }
+                    }
+                    else
+                        if (wordFind(storeline[i], L"WAR ") == 0)
+                        {
+                            if (storeline[i].find(L"=") != NOT_FOUND)
+                            {
+                                wstring code = storeline[i].substr(4, storeline[i].find(L"=") - 4);
 
-                    if (isOnlyNumber(code)) warninglist[stoi(code)] = storeline[i].substr(storeline[i].find(L"=") + 1);
-                }
-            }
+                                if (isOnlyNumber(code)) warninglist[stoi(code)] = storeline[i].substr(storeline[i].find(L"=") + 1);
+                            }
+                        }
         }
     }
 }
@@ -109,9 +108,7 @@ VecWstr readUTF8File(wstring filename)
     if (file.GetFile())
     {
         while (file.GetLines(line))
-        {
             storeline.push_back(line);
-        }
     }
     else
     {
@@ -129,9 +126,7 @@ void writeUTF8File(string filename, VecStr storeline)
     if (output.is_open())
     {
         for (uint i = 0; i < storeline.size(); ++i)
-        {
             output << storeline[i] << "\n";
-        }
     }
     else
     {

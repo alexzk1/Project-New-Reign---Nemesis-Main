@@ -3,6 +3,7 @@
 
 #include "utilities/algorithm.h"
 #include "utilities/atomiclock.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -43,9 +44,7 @@ void DebugLogging(string line, bool noEndLine)
     if (noEndLine)
     {
         for (int64_t i = 0; i < size; ++i)
-        {
             line.replace(line.find("\n"), 1, " | ");
-        }
     }
 
     Lockless_s lock(atomlock);
@@ -61,9 +60,7 @@ void DebugLogging(wstring line, bool noEndLine)
     if (noEndLine)
     {
         for (int64_t i = 0; i < size; ++i)
-        {
             line.replace(line.find(L"\n"), 1, L" | ");
-        }
     }
 
     Lockless_s lock(atomlock);

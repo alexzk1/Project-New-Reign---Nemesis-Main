@@ -1,6 +1,6 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "BSEventEveryNEventsModifier_1.h"
 
 #include <Common/Serialize/hkSerialize.h>
@@ -19,13 +19,13 @@
 
 static const hkInternalClassMember BSEventEveryNEventsModifierClass_Members[] =
 {
-   { "eventToCheckFor",&hkbEventPropertyClass,HK_NULL,hkClassMember::TYPE_STRUCT,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSEventEveryNEventsModifier,m_eventToCheckFor) /*44*/,HK_NULL},
-   { "eventToSend",&hkbEventPropertyClass,HK_NULL,hkClassMember::TYPE_STRUCT,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSEventEveryNEventsModifier,m_eventToSend) /*52*/,HK_NULL},
-   { "numberOfEventsBeforeSend",HK_NULL,HK_NULL,hkClassMember::TYPE_INT8,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSEventEveryNEventsModifier,m_numberOfEventsBeforeSend) /*60*/,HK_NULL},
-   { "minimumNumberOfEventsBeforeSend",HK_NULL,HK_NULL,hkClassMember::TYPE_INT8,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSEventEveryNEventsModifier,m_minimumNumberOfEventsBeforeSend) /*61*/,HK_NULL},
-   { "randomizeNumberOfEvents",HK_NULL,HK_NULL,hkClassMember::TYPE_BOOL,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSEventEveryNEventsModifier,m_randomizeNumberOfEvents) /*62*/,HK_NULL},
-   { "numberOfEventsSeen",HK_NULL,HK_NULL,hkClassMember::TYPE_INT32,hkClassMember::TYPE_VOID,0,hkClassMember::SERIALIZE_IGNORED,HK_OFFSET_OF(BSEventEveryNEventsModifier,m_numberOfEventsSeen) /*64*/,HK_NULL},
-   { "calculatedNumberOfEventsBeforeSend",HK_NULL,HK_NULL,hkClassMember::TYPE_INT8,hkClassMember::TYPE_VOID,0,hkClassMember::SERIALIZE_IGNORED,HK_OFFSET_OF(BSEventEveryNEventsModifier,m_calculatedNumberOfEventsBeforeSend) /*68*/,HK_NULL},
+    { "eventToCheckFor", &hkbEventPropertyClass, HK_NULL, hkClassMember::TYPE_STRUCT, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSEventEveryNEventsModifier, m_eventToCheckFor) /*44*/, HK_NULL},
+    { "eventToSend", &hkbEventPropertyClass, HK_NULL, hkClassMember::TYPE_STRUCT, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSEventEveryNEventsModifier, m_eventToSend) /*52*/, HK_NULL},
+    { "numberOfEventsBeforeSend", HK_NULL, HK_NULL, hkClassMember::TYPE_INT8, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSEventEveryNEventsModifier, m_numberOfEventsBeforeSend) /*60*/, HK_NULL},
+    { "minimumNumberOfEventsBeforeSend", HK_NULL, HK_NULL, hkClassMember::TYPE_INT8, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSEventEveryNEventsModifier, m_minimumNumberOfEventsBeforeSend) /*61*/, HK_NULL},
+    { "randomizeNumberOfEvents", HK_NULL, HK_NULL, hkClassMember::TYPE_BOOL, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSEventEveryNEventsModifier, m_randomizeNumberOfEvents) /*62*/, HK_NULL},
+    { "numberOfEventsSeen", HK_NULL, HK_NULL, hkClassMember::TYPE_INT32, hkClassMember::TYPE_VOID, 0, hkClassMember::SERIALIZE_IGNORED, HK_OFFSET_OF(BSEventEveryNEventsModifier, m_numberOfEventsSeen) /*64*/, HK_NULL},
+    { "calculatedNumberOfEventsBeforeSend", HK_NULL, HK_NULL, hkClassMember::TYPE_INT8, hkClassMember::TYPE_VOID, 0, hkClassMember::SERIALIZE_IGNORED, HK_OFFSET_OF(BSEventEveryNEventsModifier, m_calculatedNumberOfEventsBeforeSend) /*68*/, HK_NULL},
 };
 
 // Signature:  6030970c
@@ -42,6 +42,6 @@ const hkClass BSEventEveryNEventsModifierClass(
     HK_NULL, // attributes
     0, // flags
     1 // version
- );
+);
 HK_REFLECTION_DEFINE_VIRTUAL(BSEventEveryNEventsModifier, BSEventEveryNEventsModifier);
 

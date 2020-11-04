@@ -13,9 +13,9 @@ struct AddOnInfo
     std::string header;
     std::string addition;
 
-	AddOnInfo() {};
-	AddOnInfo(std::string n_h, std::string n_a);
-	AddOnInfo(std::string n_h, std::string n_a, int n_om);
+    AddOnInfo() = default;
+    AddOnInfo(std::string n_h, std::string n_a);
+    AddOnInfo(std::string n_h, std::string n_a, int n_om);
 };
 
 class AnimTemplate
@@ -35,11 +35,11 @@ class AnimTemplate
                  nemesis::CondVar<std::string>* generatedlines);
 
 public:
-	bool hasDuration;
-	bool isGroup = false;
-	size_t size = 0;
-	nemesis::CondVar<std::string> lines;
-	proc process;
+    bool hasDuration;
+    bool isGroup = false;
+    size_t size = 0;
+    nemesis::CondVar<std::string> lines;
+    proc process;
 
     void ExamineTemplate(std::string n_format,
                          std::string n_file,

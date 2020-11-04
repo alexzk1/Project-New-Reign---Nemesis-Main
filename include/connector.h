@@ -6,7 +6,7 @@
 #include <map>
 #include <string>
 #include <vector>
-
+#include <condition_variable>
 #include <QObject>
 
 class UiModInfo;

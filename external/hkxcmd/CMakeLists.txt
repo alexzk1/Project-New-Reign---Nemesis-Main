@@ -84,7 +84,13 @@ target_compile_definitions(hkxcmd PRIVATE "-D_CRT_SECURE_NO_WARNINGS=1" "D_CRT_N
 target_link_options(hkxcmd PRIVATE "/NODEFAULTLIB:MSVCRT /NODEFAULTLIB:MSVCRTD")
 ENDIF ()
 
+if (WIN32)
 target_link_libraries(hkxcmd PUBLIC ${HAVOK_LIBS} Shlwapi.lib legacy_stdio_definitions.lib)
+else()
+    if (UNIX)
+        target_compile_definitions(hkxcmd PRIVATE "-DHK_PLATFORM_UNIX")
+    endif()
+endif()
 
 target_include_directories(hkxcmd PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(hkxcmd PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/havok_2010_2_0/Source)

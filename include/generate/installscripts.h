@@ -1,7 +1,7 @@
 #ifndef INSTALLSCRIPTS_H_
 #define INSTALLSCRIPTS_H_
 
-#include <QtCore\QObject>
+#include <QObject>
 
 class NemesisInfo;
 

@@ -2,8 +2,8 @@
 #define BEHAVIORPROCESS_H_
 
 #include <unordered_set>
-
-#include <QtCore/QObject>
+#include <thread>
+#include <QObject>
 
 #include "Global.h"
 

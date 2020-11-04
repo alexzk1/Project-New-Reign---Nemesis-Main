@@ -8,9 +8,14 @@
 // _WIN32 will detect windows on most compilers
 #include <algorithm>
 #include <iomanip>
-#define WIN32_LEAN_AND_MEAN
-#include "Shlwapi.h"
-#include "Windows.h"
+#ifdef WIN32
+    #define WIN32_LEAN_AND_MEAN
+    #include "Shlwapi.h"
+    #include "Windows.h"
+    #include <tchar.h>
+    #include <DbgHelp.h>
+    #include <io.h>
+#endif
 #include <cctype>
 #include <clocale>
 #include <cstring>
@@ -19,13 +24,11 @@
 #include <map>
 #include <sstream>
 #include <string>
-#include <tchar.h>
+
 #include <vector>
 #define _USE_MATH_DEFINES
-#include <DbgHelp.h>
 #include <cmath>
 #include <cstdio>
-#include <io.h>
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////
@@ -81,3 +84,17 @@
 #include <Common/Compat/Deprecated/Packfile/Xml/hkXmlPackfileReader.h>
 #include <Common/Serialize/Packfile/Binary/hkBinaryPackfileWriter.h>
 #include <Common/Serialize/Util/hkNativePackfileUtils.h>
+
+#ifndef _countof
+template <typename T, size_t N>
+constexpr size_t _countof( const T (&)[N] ) noexcept
+{
+    return N;
+}
+
+template <typename T>
+constexpr size_t _countof(const T& v) noexcept
+{
+    return v.size();
+}
+#endif

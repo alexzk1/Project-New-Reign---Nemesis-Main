@@ -1,11 +1,11 @@
 #include "Global.h"
 #include "debuglog.h"
 #include "nemesisinfo.h"
-
-#include <Windows.h>
-
-#include <QtCore/QFile.h>
-#include <QtCore/QTextStream.h>
+#ifdef WIN32
+    #include <Windows.h>
+#endif
+#include <QFile>
+#include <QTextStream>
 
 #include "utilities/regex.h"
 #include "utilities/writetextfile.h"
@@ -73,32 +73,32 @@ void NemesisInfo::setup()
                 for (auto& line : storeline)
                 {
                     wstring path = nemesis::wregex_replace(
-                        wstring(line), nemesis::wregex(L".*[\\s]*=[\\s]*(.*)"), wstring(L"\\1"));
+                                       wstring(line), nemesis::wregex(L".*[\\s]*=[\\s]*(.*)"), wstring(L"\\1"));
                     wstring input = nemesis::to_lower_copy(nemesis::wregex_replace(
-                        wstring(line), nemesis::wregex(L"(.*)[\\s]*=[\\s]*.*"), wstring(L"\\1")));
+                            wstring(line), nemesis::wregex(L"(.*)[\\s]*=[\\s]*.*"), wstring(L"\\1")));
 
                     if (!nemesis::iequals(path, L"auto"))
                     {
-                        const unordered_map<wstring, std::function<void()>> variables = 
+                        const unordered_map<wstring, std::function<void()>> variables =
                         {
                             {
-                                L"maxanimation", 
+                                L"maxanimation",
                                 [&] { maxAnim = stoi(path); }
                             },
                             {
-                                L"first", 
+                                L"first",
                                 [&] { first = path != L"false"; }
                             },
                             {
-                                L"height", 
+                                L"height",
                                 [&] { height = stoi(path); }
                             },
                             {
-                                L"width", 
+                                L"width",
                                 [&] { width = stoi(path); }
                             },
                             {
-                                L"modNameWidth", 
+                                L"modNameWidth",
                                 [&] { modNameWidth = stoi(path); }
                             },
                             {
@@ -106,7 +106,7 @@ void NemesisInfo::setup()
                                 [&] { authorWidth = stoi(path); }
                             },
                             {
-                                L"priorityWidth", 
+                                L"priorityWidth",
                                 [&] { priorityWidth = stoi(path); }
                             },
                         };
@@ -121,37 +121,30 @@ void NemesisInfo::setup()
                                 if (dataPath.back() != L'\\' && dataPath.back() != L'/')
                                 {
                                     if (dataPath.find(L"\\") != NOT_FOUND)
-                                    {
                                         dataPath.push_back(L'\\');
-                                    }
                                     else
-                                    {
                                         dataPath.push_back(L'/');
-                                    }
                                 }
 
                                 VecStr filelist;
                                 filesystem::path fspath(dataPath);
 
                                 while (!nemesis::iequals(fspath.stem().string(), "data"))
-                                {
                                     fspath = fspath.parent_path();
-                                }
 
                                 read_directory(fspath.parent_path().string(), filelist);
 
                                 for (auto& file : filelist)
                                 {
                                     if (nemesis::iequals(file, "SkyrimSE.exe")
-                                        || nemesis::iequals(file, "binkw64.dll"))
+                                            || nemesis::iequals(file, "binkw64.dll"))
                                     {
                                         SSE = true;
                                         break;
                                     }
-                                    else if (nemesis::iequals(file, "binkw32.dll"))
-                                    {
-                                        break;
-                                    }
+                                    else
+                                        if (nemesis::iequals(file, "binkw32.dll"))
+                                            break;
                                 }
                             }
                         }
@@ -160,15 +153,12 @@ void NemesisInfo::setup()
                             auto it = variables.find(input);
 
                             if (it != variables.end())
-                            {
                                 it->second();
-                            }
                         }
                     }
-                    else if (input == L"skyrimdatadirectory" || input == L"maxanimation" || input == L"first")
-                    {
-                        hasAuto.insert(input);
-                    }
+                    else
+                        if (input == L"skyrimdatadirectory" || input == L"maxanimation" || input == L"first")
+                            hasAuto.insert(input);
                 }
             }
         }
@@ -224,15 +214,15 @@ void NemesisInfo::setup()
                     SSE = true;
                     break;
                 }
-                else if (nemesis::iequals(file, L"binkw64.dll"))
-                {
-                    SSE = true;
-                    break;
-                }
-                else if (nemesis::iequals(file, L"binkw32.dll"))
-                {
-                    break;
-                }
+                else
+                    if (nemesis::iequals(file, L"binkw64.dll"))
+                    {
+                        SSE = true;
+                        break;
+                    }
+                    else
+                        if (nemesis::iequals(file, L"binkw32.dll"))
+                            break;
             }
 
             // get skyrim data directory from registry key
@@ -249,9 +239,7 @@ void NemesisInfo::setup()
                     HKEY_LOCAL_MACHINE, L"SOFTWARE\\Bethesda Softworks\\Skyrim Special Edition", &hKey);
             }
             else
-            {
                 RegOpenKey(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Bethesda Softworks\\Skyrim", &hKey);
-            }
 
             LONG result
                 = RegQueryValueEx(hKey, L"installed path", NULL, &dwType, (LPBYTE) &value, &value_length);
@@ -289,9 +277,7 @@ void NemesisInfo::setup()
                         ErrorMessage(6005);
                     }
                     else
-                    {
                         dataPath.append(L"\\");
-                    }
                 }
             }
         }
@@ -304,9 +290,7 @@ void NemesisInfo::setup()
     }
 
     if (!force && nemesis::to_lower_copy(dataPath + L"Nemesis_Engine") != nemesis::to_lower_copy(curpath))
-    {
         ErrorMessage(6010, curpath, dataPath + L"Nemesis_Engine");
-    }
 
     stageDirectory = stagePath.length() > 0 ? (stagePath + L"\\") : dataPath;
     iniFileUpdate();

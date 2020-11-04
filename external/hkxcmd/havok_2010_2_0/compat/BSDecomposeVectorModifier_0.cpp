@@ -1,6 +1,6 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "BSDecomposeVectorModifier_0.h"
 
 #include <Common/Serialize/hkSerialize.h>
@@ -19,11 +19,11 @@
 
 static const hkInternalClassMember BSDecomposeVectorModifierClass_Members[] =
 {
-   { "vector",HK_NULL,HK_NULL,hkClassMember::TYPE_VECTOR4,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSDecomposeVectorModifier,m_vector) /*48*/,HK_NULL},
-   { "x",HK_NULL,HK_NULL,hkClassMember::TYPE_REAL,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSDecomposeVectorModifier,m_x) /*64*/,HK_NULL},
-   { "y",HK_NULL,HK_NULL,hkClassMember::TYPE_REAL,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSDecomposeVectorModifier,m_y) /*68*/,HK_NULL},
-   { "z",HK_NULL,HK_NULL,hkClassMember::TYPE_REAL,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSDecomposeVectorModifier,m_z) /*72*/,HK_NULL},
-   { "w",HK_NULL,HK_NULL,hkClassMember::TYPE_REAL,hkClassMember::TYPE_VOID,0,hkClassMember::FLAGS_NONE,HK_OFFSET_OF(BSDecomposeVectorModifier,m_w) /*76*/,HK_NULL},
+    { "vector", HK_NULL, HK_NULL, hkClassMember::TYPE_VECTOR4, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSDecomposeVectorModifier, m_vector) /*48*/, HK_NULL},
+    { "x", HK_NULL, HK_NULL, hkClassMember::TYPE_REAL, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSDecomposeVectorModifier, m_x) /*64*/, HK_NULL},
+    { "y", HK_NULL, HK_NULL, hkClassMember::TYPE_REAL, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSDecomposeVectorModifier, m_y) /*68*/, HK_NULL},
+    { "z", HK_NULL, HK_NULL, hkClassMember::TYPE_REAL, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSDecomposeVectorModifier, m_z) /*72*/, HK_NULL},
+    { "w", HK_NULL, HK_NULL, hkClassMember::TYPE_REAL, hkClassMember::TYPE_VOID, 0, hkClassMember::FLAGS_NONE, HK_OFFSET_OF(BSDecomposeVectorModifier, m_w) /*76*/, HK_NULL},
 };
 
 // Signature:  31f6b8b6
@@ -40,6 +40,6 @@ const hkClass BSDecomposeVectorModifierClass(
     HK_NULL, // attributes
     0, // flags
     0 // version
- );
+);
 HK_REFLECTION_DEFINE_VIRTUAL(BSDecomposeVectorModifier, BSDecomposeVectorModifier);
 
